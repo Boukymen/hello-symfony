@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+
+{% block title 'About Us |' ~ parent() %}
+
+{% block body %}
+	<h1>Je Commence avec symfony 😊</h1>
+	<div class="content">
+		<div class="bg-gradient-to-r from-purple-400 via-purple-600 to-indigo-300 hover:from-red-700 hover:via-pink-500 hover:to-yellow-500 transition delay-150 duration-300 ease-in-out bg-opacity-40 h-42 mt-12 rounded-full py-3 px-6 shawdow-md">
+			<img src="{{asset('/images/logo.png')}}" alt="Serenity" width="400"/>
+
+		</div>
+	
+	</div>
+	<h2 class=" text-gray-700 ">Dev with
+		<span class="text-pink-500 text-2xl">&hearts;</span>
+		by King👑 Bouky♤</h2>
+	<p class="mt-5">
+		<a href="{{ path('app_home') }}" class="text-indigo-500 hover:text-indigo-600 underline">Pages d'acceuil</a>
+	</p>
+	<div class="container">
+		<div id="horloge"></div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+  
+    <script type="text/javascript">
+        // window.onload = function() // Il faut pense à attendre que la page soit chargée avant d'exécuter le script
+		// {
+			document.addEventListener('DOMContentLoaded', function () {
+				if(document.getElementsByTagName('body')[0].style.MozTransform == ''
+					|| document.getElementsByTagName('body')[0].style.WebkitTransform == ''
+					|| document.getElementsByTagName('body')[0].style.OTransform == ''
+					|| document.getElementsByTagName('body')[0].style.OTransform
+					|| document.getElementsByTagName('body')[0].style.msTransform == ''
+					|| document.getElementsByTagName('body')[0].style.transform == '')
+				{
+					function aig() {
+						var S = document.querySelector('.aigS');
+						var M = document.querySelector('.aigM');
+						var H = document.querySelector('.aigH');
+							S.style.MozTransform    =
+							S.style.WebkitTransform =
+							S.style.OTransform      =
+							S.style.msTransform     =
+							S.style.transform       = 'rotate(' + (time * 6) + 'deg)';
+							M.style.MozTransform    =
+							M.style.WebkitTransform =
+							M.style.OTransform      =
+							M.style.msTransform     =
+							M.style.transform       = 'rotate(' + Math.round(time / 10) + 'deg)';
+							H.style.MozTransform    =
+							H.style.WebkitTransform =
+							H.style.OTransform      =
+							H.style.msTransform     =
+							H.style.transform       = 'rotate(' + Math.round(time / 120) + 'deg)';
+					}
+					var aigS = document.createElement('img');
+					aigS.setAttribute('src'  , '/images/aigS.png');
+					aigS.setAttribute('class', 'aig aigS');
+					aigS.setAttribute('alt'  , 'aiguille des secondes');
+					aigS.setAttribute('style', 'left: 126px; top:25px; width: 0.45px;');
+					// aigS.style.left = '283px';
+
+					var aigM = document.createElement('img');
+					aigM.setAttribute('src'  , '/images/aigM.png');
+					aigM.setAttribute('class', 'aig aigM');
+					aigM.setAttribute('alt'  , 'aiguille des minutes');
+					aigM.setAttribute('style', 'left: 125px; top:54px;  width:4px;');
+					// aigM.style.left = '278px';
+
+					var aigH = document.createElement('img');
+					aigH.setAttribute('src'  , '/images/aigH.png');
+					aigH.setAttribute('class', 'aig aigH');
+					aigH.setAttribute('alt'  , 'aiguille des heures');
+					aigH.setAttribute('style', 'left: 125px; top:65px; width:4px;');
+					// aigH.style.left = '278px';
+
+					var horloge = document.getElementById('horloge');
+					horloge.appendChild(aigS);
+					horloge.appendChild(aigM);
+					horloge.appendChild(aigH);
+					// horloge.setAttribute('style', 'background: url(\'/images/cadran.png\');');
+					horloge.setAttribute('style', 'background-size: 250px');
+					
+					// horloge.style.background = 'url(\'/images/cadran.png\')';
+					// horloge.style.width = '200px';
+					// horloge.style.heigh = '200px';
+
+					var d    = new Date();
+					var time = d.getSeconds() + 60 * d.getMinutes() + 3600 * d.getHours();
+
+					var aigS = document.getElementById('aigS');
+					var aigM = document.getElementById('aigM');
+					var aigH = document.getElementById('aigH');
+					aig();
+					
+					setInterval(function() {
+						time++;
+						aig();
+						}, 1000);
+				}
+			});
+		// }
+    </script>
+{% endblock %}

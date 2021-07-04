@@ -1,0 +1,46 @@
+//l'application est deployer sur les server heroku et
+on a cree la variable d'env definissant qu'on est plus en dev mais en production avec la commande:
+
+heroku config:set APP_ENV=prod
+
+heroku config:set APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));') ///permet de generer une chaine aleatoire de 32 caractere en php
+
+
+//ajout du pack apache pour generer .htaccess permet l'acces a nos autre page
+
+ composer req apache-pack 
+
+
+ en cas d'erreur: //permet de nettoyer les caches et rechauffer le cache
+ essayer : heroku log --tail
+in Procfile : 
+  release: php bin/console cache:clear && php bin/console cache:warnmup  
+
+ 
+  SI L'ON VEUT UTILISER NGinX A LA PLACE D'APACHE :
+//retirer la config apache
+  composer rem apache-pack
+
+// dans Procfile
+web: heroku-php-nginx -C public/nginx_app.conf public/ 
+
+//cree nginx_app.conf
+
+//coller caa
+                  location / {
+                      # try to serve file directly, fallback to rewrite
+                      try_files $uri @rewriteapp;
+                  }
+
+                  location @rewriteapp {
+                      # rewrite all to index.php
+                      rewrite ^(.*)$ /index.php/$1 last;
+                  }
+
+                  location ~ ^/index\.php(/|$) {
+                      try_files @heroku-fcgi @heroku-fcgi;
+                      # ensure that /index.php isn't accessible directly, but only through a rewrite
+                      internal;
+                  }
+
+//git add , commit, push

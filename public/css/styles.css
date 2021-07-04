@@ -1,0 +1,70 @@
+
+h1{
+    -moz-transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    -moz-transform-origin: center center;
+    -webkit-transform-origin: center center;
+    -o-transform-origin: center center;
+    -ms-transform-origin: center center;
+    transform-origin: center center;
+    text-align: center;
+    }
+
+.aig{
+    position: absolute;
+    bottom: 153px;
+    -moz-transform-origin: bottom center;
+    -webkit-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    transform-origin: bottom center;
+      }
+.container{
+    position: relative;
+    float: left;
+    left: 22.5%;
+    margin-top: 10px;
+    top: 70%;
+    /* text-align: center; */
+    /* width: 200px;
+    height: 200px; */
+}
+#horloge{
+    background: url('/images/cadran.png') no-repeat;
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border: 1px solid black;
+    -moz-border-radius: 284px;
+    -webkit-border-radius: 284px;
+    -o-border-radius: 284px;
+    -ms-border-radius: 284px;
+    border-radius: 184px;
+    /* background-size: contain; */
+
+    }
+
+    @media (max-width: 950px) { 
+        .container{
+            left: 15%;
+        }
+        .content{
+            width: 80%;
+        }
+     }
+    
+/*
+.aigS{
+
+} 
+ .aigM{
+    left: 278px;
+}
+.aigH{
+    left: 278px;
+} */
+
+

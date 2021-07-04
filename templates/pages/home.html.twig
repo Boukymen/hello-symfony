@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <img src="{{asset('/images/serenity.jpg')}}" alt="Serenity"  width="400" class="shadow-md mt-12 rounded-full py-3 px-6 my-8"/>
+    <h1 class="mb-3 text-3xl sm:text-5xl font-semibold text-indigo-600">Salut depuis Brest</h1>
+    <p class="text-lg text-gray-800">il est très Exactement <span class="time"></span></p>
+    <p class="text-lg text-gray-800">Nous somme le <div class="date"></div></p>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    
+    
+    <script type="text/javascript">
+        
+        document.addEventListener('DOMContentLoaded', function time() {
+            var dateTime = document.querySelector('.date');
+            dateTime.innerHTML = moment().format(' DD MMMM YYYY ')
+            document.querySelector('.time').innerHTML = moment().format(' H:mm:ss ')
+            const createClock = setInterval(time, 1000);
+
+            });
+    </script>
+{% endblock %}
